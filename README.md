@@ -64,3 +64,86 @@ setTimeout(() => window.open('http://google.com'), 1000); the popups are gonna b
 
 The difference is that Firefox treats a timeout of 2000ms or less are acceptable, but after it – removes the “trust”, assuming that now it’s “outside of the user action”. So the first one is blocked, and the second one is not.
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Window.open method
+
+
+he window.open() function is a JavaScript method used to open a new browser window or tab (often referred to as a "popup" window) with a specified URL and various optional parameters.
+
+syntax: window.open(url, name, params);
+
+url (string): This is a required parameter that specifies the URL of the web page or resource you want to open in the new window or tab. 
+
+name: (string, optional): This parameter specifies the name of the new window or tab. If a window with the same name already exists, the URL will be loaded in that existing window. If not provided or set to "_blank", a new window or tab will be opened.
+
+params (string, optional): This parameter is used to specify various optional window features, such as the size, position, and behavior of the new window. It is a comma-separated list of feature=value pairs enclosed in single quotes ('').
+
+example:
+Opens a new window with Google's homepage.
+
+window.open('https://www.google.com', 'Google', 'width=600,height=400');
+
+
+
+menubar (yes/no) – shows or hides the browser menu on the new window.
+toolbar (yes/no) – shows or hides the browser navigation bar (back, forward, reload etc) on the new window.
+location (yes/no) – shows or hides the URL field in the new window. FF and IE don’t allow to hide it by default.
+status (yes/no) – shows or hides the status bar. Again, most browsers force it to show.
+resizable (yes/no) – allows to disable the resize for the new window. Not recommended.
+scrollbars (yes/no) – allows to disable the scrollbars for the new window. Not recommended.
+There is also a number of less supported browser-specific features, which are usually not used. Check window.open in MDN for examples.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Accessing popup from window:
+
+The open call returns a reference to the new window. It can be used to manipulate it’s properties, change location and even more.
+
+<!DOCTYPE html>
+
+<script>
+
+"use strict";
+
+let newWindow = open('/', 'example', 'width=300,height=300')
+
+newWindow.focus();
+
+alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
+
+newWindow.onload = function() {
+
+let html = `<div style="font-size:30px">Welcome!</div>`;
+
+newWindow.document.body.insertAdjacentHTML('afterbegin', html);
+
+};
+
+</script>
+
+immediately after window.open, the new window isn’t loaded yet. That’s demonstrated by alert in line (*). So we wait for onload to modify it. We could also use DOMContentLoaded handler for newWin.document.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ACCESSING A WINDOW FROM A POPUP
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popup Window</title>
+</head>
+<body>
+    <button onclick="accessParentWindow()">Access Parent Window</button>
+</body>
+<script>
+    function accessParentWindow() {
+        // Access the parent window
+        var parentWindow = window.opener;
+        
+        if (parentWindow) {
+            // You can now interact with the parent window
+            parentWindow.alert("Accessed the parent window!");
+        } else {
+            alert("Parent window not found.");
+        }
+    }
+</script>
+</html>
+
