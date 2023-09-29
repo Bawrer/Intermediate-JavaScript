@@ -1,1 +1,6 @@
+<<<<<<<<<<<<<<<<<<<<<<<<<Introduction to Clickjacking>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+It is a technique used by hackers to to make visitors of a certain page to perform a certain action without knowing.
 
+They hide elements under each other . They can do that with the help of CSS properties like: opacity and blur.
+
+we can prevent that using intersection observer.v
