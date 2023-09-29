@@ -153,7 +153,7 @@ First, make sure you have a reference to the popup window object in your parent 
 
 var popupWindow; // Declare a variable to store the reference to the popup window
 
-//////////////////////////////////////////////////////////////////
+//..................................................................................................................................//
 
 function openPopup() {
 
@@ -163,7 +163,7 @@ popupWindow = window.open("popup.html", "Popup", "width=400,height=300");
 
 }
 
-//////////////////////////////////////////////////////////////
+//..............................................................................................................................//
 
 To close the popup window, you can use the window.close() method on the popupWindow reference. For example, you can create a function to close the popup window:
 
@@ -179,7 +179,7 @@ popupWindow.close();
 
 }
 
-////////////////////////////////////////////////////////////////
+//.................................................................................//
 
 a complete code of opening and closing a popup
 
