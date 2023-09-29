@@ -86,7 +86,8 @@ window.frames[0].src = 'newpage.html'; // Changes the source of the first iframe
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<The “sandbox” iframe attribute>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-The "sandbox" attribute can have several values or a combination of values separated by spaces, each of which represents a specific set of restrictions on the iframe's content. The following are some common values:
+The "sandbox" attribute can have several values or a combination of values separated by spaces, each of which represents a specific set of restrictions on the iframe's content. 
+The following are some common values:
 
 allow-same-origin: This value allows the iframe's content to be treated as coming from the same origin as the parent page, meaning it can access resources and interact with JavaScript from the same origin.
 
