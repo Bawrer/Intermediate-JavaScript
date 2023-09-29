@@ -10,3 +10,31 @@ if we have a reference to another window, e.g. a popup created by window.open or
 
 otherwise, if it comes from another origin, then we can’t access the content of that window: variables, document, anything.
 The only exception is location: we can change it (thus redirecting the user). But we cannot read the location (so we can’t see where the user is now, no information leak).
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-----------------------In Action: Frame-----------------------
+
+1. iframe.contentWindow: This property allows you to access the window object inside the <iframe>. You can use it to manipulate the contents of the iframe or perform actions within it.
+
+var iframe = document.getElementById('myIframe');
+var iframeWindow = iframe.contentWindow;
+iframeWindow.alert('Hello from iframe!');
+
+
+2.iframe.contentDocument: This property provides access to the document object inside the <iframe>. It is a shorter way to access the document within the iframe compared to iframe.contentWindow.document.
+
+var iframe = document.getElementById('myIframe');
+var iframeDocument = iframe.contentDocument;
+var iframeBody = iframeDocument.body;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-----Windows on subdomains: document.domain---------------
+
+
+Generally, two URLs with different domains have different origins, if the windows share the same second-level domain , e.g  borah.site.come, tsepo.site.com and site.com. their second-level domain is site.com.
+
+we are able to make the browser ignore  so that that they can be treated like they can be treated like they are coming from the same origin for purpose of cross-window communication.
+
+In order for it to work each window should run the code:
+document.domain = 'site.com'
+
+That’s all. Now they can interact without limitations
