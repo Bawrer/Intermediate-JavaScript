@@ -38,3 +38,23 @@ In order for it to work each window should run the code:
 document.domain = 'site.com'
 
 That’s all. Now they can interact without limitations
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<<<<<<<<<<<<<<<<<<<<<<<<<Iframe: wrong document pitfall>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+The "Wrong Document" pitfall in the context of <iframe> elements is a common issue that developers may encounter when trying to manipulate or 
+access the content within an iframe, particularly when dealing with cross-origin iframes.
+This pitfall arises because web browsers enforce a security policy known as the Same-Origin Policy, which restricts JavaScript interactions between documents from different origins (i.e., domains).
+
+Here's what the "Wrong Document" pitfall entails:
+
+Cross-Origin Limitations: If you have an iframe on your page that loads content from a different origin (i.e., a different domain), 
+JavaScript running in the parent page (the main document) is generally not allowed to directly access or
+manipulate the content within the iframe (the child document).
+
+Access Denied Errors:
+f you attempt to access the iframe's content using techniques like iframe.contentWindow or iframe.contentDocument when the iframe is from a different origin,
+you may encounter "Access Denied" or "Permission Denied" errors.
+
+Security Protections: This restriction is in place for security reasons to prevent malicious scripts from one domain from tampering with the content of another domain's iframe.
+
+To work around this pitfall and enable communication between the parent document and the iframe from a different origin, you can use the postMessage API, which allows secure cross-origin communication. With postMessage, you can send messages and data between the parent and child documents, even if they are from different origins
