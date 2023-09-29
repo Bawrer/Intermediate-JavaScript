@@ -3,4 +3,45 @@ It is a technique used by hackers to to make visitors of a certain page to perfo
 
 They hide elements under each other . They can do that with the help of CSS properties like: opacity and blur.
 
-we can prevent that using intersection observer.v
+we can prevent that using intersection observer.
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Old school defenses (weak)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+The old school defense is like the:
+
+if (top != window) {
+
+  top.location = window.location;
+
+} ;
+
+In this case, the window checks if it's the top then if not it makes itself the top.
+This is not a reliable defense, because there are many ways to hack around it.
+
+Blocking top-navigation typically refers to a web development practice where certain actions or elements in a web page's user interface are disabled or restricted to the user. This can be done for various reasons, such as to prevent users from navigating away from a particular page, to restrict access to certain features, or to guide users through a specific flow or process.
+
+We can block the transition caused by changing top.location in beforeunload event handler.
+
+The top page (enclosing one, belonging to the hacker) sets a preventing handler to it, like this:
+
+window.onbeforeunload = function() {
+
+  return false;
+
+};
+
+When the iframe tries to change top.location, the visitor gets a message asking them whether they want to leave.
+
+In most cases the visitor would answer negatively because they don’t know about the iframe – all they can see is the top page, there’s no reason to leave. So top.location won’t change.
+
+
+Sandbox attribute
+One of the things restricted by the sandbox attribute is navigation. A sandboxed iframe may not change top.location.
+
+So we can add the iframe with sandbox="allow-scripts allow-forms". That would relax the restrictions, permitting scripts and forms. But we omit allow-top-navigation so that changing top.location is forbidden.
+
+Here’s the code:
+
+<iframe sandbox="allow-scripts allow-forms" src="facebook.html"></iframe>
+
+There are other ways to work around that simple protection too.
