@@ -5,7 +5,7 @@ They hide elements under each other . They can do that with the help of CSS prop
 
 we can prevent that using intersection observer.
 
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Old school defenses (weak)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<Old school defenses (weak)>>>>>>>>>>>>>>
 
 The old school defense is like the:
 
