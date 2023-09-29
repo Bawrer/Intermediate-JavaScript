@@ -141,7 +141,40 @@ indexOf(searchElement[, fromIndex]):
 Searches for the first occurrence of searchElement in the TypedArray, starting from the optional fromIndex.
 Returns the index of the found element or -1 if not found.
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+<<<<<<<<<<<<<<<<<<<<<<----------------DataView------------------>>>>>>>>>>>>>>>>>>>>
+DataView is a JavaScript object that provides a way to access and manipulate binary data in a more flexible and fine-grained manner compared to TypedArrays.
+
+syntax:
+const buffer = new ArrayBuffer(bufferLength); // Create an ArrayBuffer with a specified length in bytes.
+const dataView = new DataView(buffer); // Create a DataView to work with the ArrayBuffer.
+
+reading data:
+// Reading methods: get<Type>(byteOffset, [littleEndian])
+
+const intValue = dataView.getInt32(byteOffset, littleEndian);
+const floatValue = dataView.getFloat32(byteOffset, littleEndian);
+const stringValue = dataView.getString(byteOffset, byteLength, encoding);
+// ...and more, where <Type> can be Int8, Uint8, Int16, Uint16, Int32, Uint32, Float32, or Float64.
+
+writing data:
+// Writing methods: set<Type>(byteOffset, value, [littleEndian])
+
+dataView.setInt32(byteOffset, intValue, littleEndian);
+dataView.setFloat32(byteOffset, floatValue, littleEndian);
+dataView.setString(byteOffset, stringValue, encoding);
+// ...and more, where <Type> can be Int8, Uint8, Int16, Uint16, Int32, Uint32, Float32, or Float64.
+
+combination of the above syntax:
+
+const buffer = new ArrayBuffer(4); // Create a 4-byte buffer
+const dataView = new DataView(buffer); // Create a DataView to work with the buffer
+
+dataView.setInt32(0, 12345, true); // Write a 32-bit integer with little-endian byte order
+const readValue = dataView.getInt32(0, true); // Read the integer back
+
+console.log(readValue); // Output: 12345
 
  
 
