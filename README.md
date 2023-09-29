@@ -146,4 +146,104 @@ ACCESSING A WINDOW FROM A POPUP
     }
 </script>
 </html>
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+CLOSING A POPUP
 
+First, make sure you have a reference to the popup window object in your parent window. You can store this reference when you open the popup window using the window.open() method.
+
+var popupWindow; // Declare a variable to store the reference to the popup window
+
+//////////////////////////////////////////////////////////////////
+
+function openPopup() {
+
+// Open the popup window and store the reference
+
+popupWindow = window.open("popup.html", "Popup", "width=400,height=300");
+
+}
+
+//////////////////////////////////////////////////////////////
+
+To close the popup window, you can use the window.close() method on the popupWindow reference. For example, you can create a function to close the popup window:
+
+function closePopup() {
+
+if (popupWindow && !popupWindow.closed) {
+
+// Check if the popup window is open and not already closed
+
+popupWindow.close();
+
+}
+
+}
+
+////////////////////////////////////////////////////////////////
+
+a complete code of opening and closing a popup
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Parent Window</title>
+
+</head>
+
+<body>
+
+<button onclick="openPopup()">Open Popup</button>
+
+</body>
+
+<script>
+
+var popupWindow; // Declare a variable to store the reference to the popup window
+
+function openPopup() {
+
+// Open the popup window and store the reference
+
+popupWindow = window.open("popup.html", "Popup", "width=400,height=300");
+
+}
+
+function closePopup() {
+
+if (popupWindow && !popupWindow.closed) {
+
+// Check if the popup window is open and not already closed
+
+popupWindow.close();
+
+}
+
+}
+
+</script>
+
+</html>
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+SCROLLING AND RESIZING
+
+win.moveBy(x,y)
+
+Move the window relative to current position x pixels to the right and y pixels down. Negative values are allowed (to move left/up).
+
+win.moveTo(x,y)
+
+Move the window to coordinates (x,y) on the screen.
+
+win.resizeBy(width,height)
+
+Resize the window by given width/height relative to the current size. Negative values are allowed.
+
+win.resizeTo(width,height)
+
+Resize the window to the given size.
+
+There’s also window.onresize event.
