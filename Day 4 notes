@@ -72,7 +72,77 @@ if (index >= 0 && index < arr.length) {
 } else {
   console.log("Index is out of bounds");
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<<<<<<<<<<<<<<<<<<<<------------TypedDataArray--------->>>>>>>>>>
+TypedArray has regular Array methods, with notable exceptions.
+
+We can iterate, map, slice, find, reduce, etc.
+
+There are a few things we can’t do though:
+
+No splice – we can’t “delete” a value, because typed arrays are views on a buffer, and these are fixed, contiguous areas of memory. All we can do is to assign a zero.
+No concat method.
+There are two additional methods:
+
+arr.set(fromArr, [offset]) copies all elements from fromArr to the arr, starting at position offset (0 by default).
+arr.subarray([begin, end]) creates a new view of the same type from begin to end (exclusive). That’s similar to slice method (that’s also supported), but doesn’t copy anything – just creates a new view, to operate on the given piece of data.
+These methods allow us to copy typed arrays, mix them, create new arrays from existing ones, and so on.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<<<<<<<<<<<------------TypedArray methods--------------------->>>>>>>>>>>>>>
+TypedArrays in JavaScript come with various methods for manipulating and working with binary data efficiently. Here are short notes on some of the commonly used methods for TypedArrays:
+
+
+subarray(begin[, end]):
+
+Returns a new TypedArray that references a portion of the original TypedArray, specified by the begin and optional end indices.
+Useful for creating views into the same underlying data.
+
+
+slice(begin[, end]):
+
+Similar to subarray but returns a new TypedArray with the specified portion of the original TypedArray.
+Creates a copy of the data if the TypedArray is not backed by an ArrayBuffer.
+
+
+set(array[, offset]):
+
+Copies the values from a regular array or TypedArray array into the current TypedArray, starting at the optional offset position.
+Useful for combining or copying data between TypedArrays.
+
+
+copyWithin(target, start[, end]):
+
+Copies a portion of the TypedArray and pastes it within the same TypedArray, starting at the target index and replacing elements from start to end.
+Modifies the original TypedArray in place.
+
+
+sort([compareFunction]):
+
+Sorts the elements in the TypedArray, optionally using a custom comparison function specified by compareFunction.
+Modifies the original TypedArray.
+
+
+map(callback[, thisArg]):
+
+Creates a new TypedArray by applying the provided callback function to each element in the original TypedArray.
+The thisArg parameter allows setting the context for the callback.
+
+
+reduce(callback[, initialValue]):
+
+Applies a callback function to the elements of the TypedArray, accumulating a single result.
+The initialValue is an optional starting value for the accumulation.
+
+
+indexOf(searchElement[, fromIndex]):
+
+Searches for the first occurrence of searchElement in the TypedArray, starting from the optional fromIndex.
+Returns the index of the found element or -1 if not found.
 
 
 
+ 
 
+ 
