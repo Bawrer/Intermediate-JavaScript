@@ -1,1 +1,49 @@
+<<<<<<<<<<<<<<<<ArrayBuffer>>>>>>>>>>>>>>>>>>
+TypedArray is the combination of uit8Array, uint16array, uint32array etc. 
+They have indexes and iterable.
+
+A typed array constructor (be it Int8Array or Float64Array, doesn’t matter) behaves differently depending on argument types.
+
+There are 5 variants of arguments:
+
+new TypedArray(buffer, [byteOffset], [length]);
+
+new TypedArray(object);
+
+new TypedArray(typedArray);
+
+new TypedArray(length);
+
+new TypedArray();
+
+
+Data Types: TypedArrays provide a way to work with binary data using a fixed type. 
+The available data types include Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, and Float64Array.
+
+Fixed Length: Each TypedArray has a fixed length, meaning you cannot change the number of elements after creation. To change the length, you must create a new TypedArray.
+
+Memory Efficiency: TypedArrays are memory-efficient because they store data in a contiguous memory block and have a fixed type. 
+This is especially useful when dealing with large datasets or interfacing with lower-level APIs.
+
+Creation: You can create a TypedArray from various sources, including existing arrays, ArrayBuffer, or shared memory using constructors like Uint8Array, Int32Array, etc.
+
+const array = new Uint8Array([1, 2, 3]);
+
+
+ArrayBuffer: TypedArrays are often used in conjunction with ArrayBuffer, which is a low-level binary data buffer. ArrayBuffer can be shared among different TypedArrays.
+
+ eg, const buffer = new ArrayBuffer(16);
+const view1 = new Int8Array(buffer);
+const view2 = new Uint32Array(buffer);
+
+Indexed Access: You can access elements in a TypedArray using the standard array indexing notation.
+
+const value = array[0];
+
+data Manipulation: TypedArrays provide methods to manipulate data, such as set, subarray, and more, to copy, slice, or modify portions of the data efficiently.
+
+eg, const newArray = array.subarray(1, 3);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
