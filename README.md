@@ -247,3 +247,41 @@ win.resizeTo(width,height)
 Resize the window to the given size.
 
 There’s also window.onresize event.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+SCROLLING A WINDOW
+
+We already talked about scrolling a window in the chapter Window sizes and scrolling.
+
+win.scrollBy(x,y)
+
+Scroll the window x pixels right and y down relative the current scroll. Negative values are allowed.
+
+win.scrollTo(x,y)
+
+Scroll the window to the given coordinates (x,y).
+
+elem.scrollIntoView(top = true)
+
+Scroll the window to make elem show up at the top (the default) or at the bottom for elem.scrollIntoView(false).
+
+There’s also window.onscroll event.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Focus/Blur on a window
+
+To blur a specific HTML element:
+
+You can use the blur() method to remove focus from a specific HTML element. For example:
+
+// Blur an input element with the id "myInput"
+document.getElementById("myInput").blur();
+
+
+To focus on the browser window itself:
+
+If you want to bring the entire browser window into focus, you can use the window.focus() method. However, please note that this method may not always work as expected, as modern browsers often restrict focus-related actions to prevent abuse.
+
+// Focus on the current browser window
+window.focus();
