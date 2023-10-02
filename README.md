@@ -93,9 +93,9 @@ status (yes/no) – shows or hides the status bar. Again, most browsers force it
 resizable (yes/no) – allows to disable the resize for the new window. Not recommended.
 scrollbars (yes/no) – allows to disable the scrollbars for the new window. Not recommended.
 There is also a number of less supported browser-specific features, which are usually not used. Check window.open in MDN for examples.
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-<<----------Accessing popup from window:------------>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<<<<<----------Accessing popup from window:------------>>>>>>>>>>>>
 
 The open call returns a reference to the new window. It can be used to manipulate it’s properties, change location and even more.
 
