@@ -12,7 +12,7 @@ otherwise, if it comes from another origin, then we can’t access the content o
 The only exception is location: we can change it (thus redirecting the user). But we cannot read the location (so we can’t see where the user is now, no information leak).
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
------------------------In Action: Frame-----------------------
+----------------------- #In Action: Frame-----------------------
 
 1. iframe.contentWindow: This property allows you to access the window object inside the <iframe>. You can use it to manipulate the contents of the iframe or perform actions within it.
 
@@ -40,18 +40,18 @@ document.domain = 'site.com'
 That’s all. Now they can interact without limitations
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<<<<<<<<<<<<<<<<<<<<Iframe: wrong document pitfall>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#<<<<<<<<<<<<<<<<<<<<<<<<<Iframe: wrong document pitfall>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 The "Wrong Document" pitfall in the context of <iframe> elements is a common issue that developers may encounter when trying to manipulate or 
 access the content within an iframe, particularly when dealing with cross-origin iframes.
 This pitfall arises because web browsers enforce a security policy known as the Same-Origin Policy, which restricts JavaScript interactions between documents from different origins (i.e., domains).
 
-Here's what the "Wrong Document" pitfall entails:
+#Here's what the "Wrong Document" pitfall entails:
 
 Cross-Origin Limitations: If you have an iframe on your page that loads content from a different origin (i.e., a different domain), 
 JavaScript running in the parent page (the main document) is generally not allowed to directly access or
 manipulate the content within the iframe (the child document).
 
-Access Denied Errors:
+#Access Denied Errors:
 f you attempt to access the iframe's content using techniques like iframe.contentWindow or iframe.contentDocument when the iframe is from a different origin,
 you may encounter "Access Denied" or "Permission Denied" errors.
 
