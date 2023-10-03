@@ -16,7 +16,7 @@ A popup can navigate (change URL) and send messages to the opener window.
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#Blocking popups
+##Blocking popups
 
 Blocking popups using JavaScript involves preventing new browser windows or tabs from opening unexpectedly or without user interaction.
 
