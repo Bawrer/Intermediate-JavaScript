@@ -292,3 +292,129 @@ window.focus();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 # day 2
+
+
+## SAME ORIGIN
+
+ For URLs to have the same origin they must have the same protocol, domain and port.
+
+
+The “Same Origin” policy states that:
+
+if we have a reference to another window, e.g. a popup created by window.open or a window inside <iframe>, and that window comes from the same origin, then we have full access to that window.
+
+otherwise, if it comes from another origin, then we can’t access the content of that window: variables, document, anything.
+The only exception is location: we can change it (thus redirecting the user). But we cannot read the location (so we can’t see where the user is now, no information leak).
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+### In Action: Frame
+
+1. iframe.contentWindow: This property allows you to access the window object inside the <iframe>. You can use it to manipulate the contents of the iframe or perform actions within it.
+
+var iframe = document.getElementById('myIframe');
+var iframeWindow = iframe.contentWindow;
+iframeWindow.alert('Hello from iframe!');
+
+
+2.iframe.contentDocument: This property provides access to the document object inside the <iframe>. It is a shorter way to access the document within the iframe compared to iframe.contentWindow.document.
+
+var iframe = document.getElementById('myIframe');
+var iframeDocument = iframe.contentDocument;
+var iframeBody = iframeDocument.body;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+###Windows on subdomains: document.domain
+
+
+Generally, two URLs with different domains have different origins, if the windows share the same second-level domain , e.g  borah.site.come, tsepo.site.com and site.com. their second-level domain is site.com.
+
+we are able to make the browser ignore  so that that they can be treated like they can be treated like they are coming from the same origin for purpose of cross-window communication.
+
+In order for it to work each window should run the code:
+document.domain = 'site.com'
+
+That’s all. Now they can interact without limitations
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+### Iframe: wrong document pitfall
+
+The "Wrong Document" pitfall in the context of <iframe> elements is a common issue that developers may encounter when trying to manipulate or 
+access the content within an iframe, particularly when dealing with cross-origin iframes.
+This pitfall arises because web browsers enforce a security policy known as the Same-Origin Policy, which restricts JavaScript interactions between documents from different origins (i.e., domains).
+
+### Here's what the "Wrong Document" pitfall entails:
+
+Cross-Origin Limitations: If you have an iframe on your page that loads content from a different origin (i.e., a different domain), 
+JavaScript running in the parent page (the main document) is generally not allowed to directly access or
+manipulate the content within the iframe (the child document).
+
+#Access Denied Errors:
+f you attempt to access the iframe's content using techniques like iframe.contentWindow or iframe.contentDocument when the iframe is from a different origin,
+you may encounter "Access Denied" or "Permission Denied" errors.
+
+Security Protections: This restriction is in place for security reasons to prevent malicious scripts from one domain from tampering with the content of another domain's iframe.
+
+To work around this pitfall and enable communication between the parent document and the iframe from a different origin, you can use the postMessage API, which allows secure cross-origin communication.
+With postMessage, you can send messages and data between the parent and child documents, even if they are from different origins
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+### Collection: window.frames
+Accessing an iframe by index: You can access a specific iframe within the collection using its numerical index. For example:
+
+var firstFrame = window.frames[0]; // Accesses the first iframe
+--------------------------------------------------------------------------------
+Accessing an iframe by name:
+ If an iframe has a name attribute, you can access it by name as well:
+
+var myFrame = window.frames['frameName']; // Accesses the iframe with the name "frameName"
+---------------------------------------------------------------------------
+Iterating through all iframes: 
+You can iterate through all iframes within the current window using a loop:
+
+for (var i = 0; i < window.frames.length; i++) {
+  var frame = window.frames[i];
+  // Do something with the iframe
+}
+-----------------------------------------------------------------------------
+#### Manipulating iframes:
+ You can modify the content, properties, and attributes of iframes through the window.frames collection. For example, you can change the source (URL) of an iframe:
+
+window.frames[0].src = 'newpage.html'; // Changes the source of the first iframe
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<The “sandbox” iframe attribute>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+The "sandbox" attribute can have several values or a combination of values separated by spaces, each of which represents a specific set of restrictions on the iframe's content. 
+The following are some common values:
+
+allow-same-origin: This value allows the iframe's content to be treated as coming from the same origin as the parent page, meaning it can access resources and interact with JavaScript from the same origin.
+
+allow-top-navigation: This value allows the iframe's content to navigate the top-level window (the parent window). Without this value, the content cannot change the URL of the parent window.
+
+allow-forms: If this value is present, the iframe's content is allowed to submit forms. It means that forms inside the iframe can perform form submissions.
+
+allow-scripts: This value permits the execution of JavaScript code within the iframe. Without it, JavaScript execution is disabled within the iframe.
+
+allow-popups: If this value is set, the iframe can open new browser windows or tabs. Without it, attempts to open new windows or tabs will be blocked.
+
+allow-modals: This allows the iframe to open modal dialogs (e.g., alert, confirm, or prompt dialogs).
+
+allow-pointer-lock: If set, the iframe can use the Pointer Lock API to gain control of the mouse cursor.
+
+allow-orientation-lock: If set, the iframe can use the Orientation Lock API to control the screen orientation.
+
+allow-presentation: This allows the iframe to start a presentation session.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+###Window Messaging
+
+PostMessage allows windows from different origins to communicate by ignoring some of the restrictions.
+
+So, it’s a way around the “Same Origin” policy. It allows a window from john-smith.com to talk to gmail.comand exchange information, but only if they both agree and call corresponding JavaScript functions. That makes it safe for users.
+
+postMessage() Method: The window.postMessage() method is used to send messages from one window to another. This method takes two parameters: the data you want to send and the target window or window.postMessage(message, targetOrigin).
+
+message: This is the data you want to send, which can be a string, an object, or any serializable data.
+targetOrigin: This is the origin of the target window (e.g., "https://example.com"). It specifies the domain of the receiving window and is used as a security measure to prevent cross-origin messaging.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
