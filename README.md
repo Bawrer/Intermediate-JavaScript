@@ -16,7 +16,7 @@ A popup can navigate (change URL) and send messages to the opener window.
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#Blocking popups#
+## Blocking popups
 
 Blocking popups using JavaScript involves preventing new browser windows or tabs from opening unexpectedly or without user interaction.
 
@@ -66,7 +66,7 @@ The difference is that Firefox treats a timeout of 2000ms or less are acceptable
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<<<<<<<<<<<<<<-------------Window.open method-------------->>>>>>>>>>>>>>>>>>
+<<<<<<<<<<<<<<<<<<<------------- ## Window.open method-------------->>>>>>>>>>>>>>>>>>
 
 
 he window.open() function is a JavaScript method used to open a new browser window or tab (often referred to as a "popup" window) with a specified URL and various optional parameters.
