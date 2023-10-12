@@ -687,7 +687,284 @@ const readValue = dataView.getInt32(0, true); // Read the integer back
 console.log(readValue); // Output: 12345
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- ## week 2
+ # week 2
+
+# Day 1
+## File and FileReader
+file object inherits from the Blob. It can be extended to filesystem-related facilities.
+
+You can obtain it in two ways:
+
+-The first way is using a constructor similar to Blob:
+new File(fileParts, fileName, [options])
+
+-file can be received from <input type="file">, or drag and drop or other browser interfaces.
+
+Let’s see how the File object can be received from <input type="file">:
+
+<!DOCTYPE html>
+  <head>
+    <title>Title of the Document</title>
+  </head>
+  <body>
+    <input onchange="showFile(this)" type="file">
+    <script>
+      function showFile(input) {
+        let file = input.files[0];
+        alert(`File name: ${file.name}`); 
+        alert(`Last modified: ${file.lastModified}`);
+      }
+    </script>
+  </body>
+</html>
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+                              ## fileReader
+
+The purpose of the fileReader is to read data from Blob objects. It provides data with the usage of events because reading from disk might take long.
+
+The constructor of the FileReader is the following:
+
+let fileReader = new FileReader(); // not a arguments
+
+Its primary methods are as follows:
+
+readAsArrayBuffer(blob) – reading data in binary format ArrayBuffer.
+readAsText(blob, [encoding]) – reading the data like a text string with particular encoding (utf-8 by default).
+
+readAsDataURL(blob) – reading the binary data and 
+encoding that as base64 data url.
+
+abort() – canceling the action.
+
+The choice of read method depends on which format we prefer, how we are going to use data.
+
+readAsArrayBuffer – for binary files, to do low-level binary operations. For high-level operations, like slicing, File inherits from Blob, so we can call them directly, without reading.
+
+readAsText – for text files, when we’d like to get a string.
+
+readAsDataURL – when we’d like to use this data in src for img or another tag. There’s an alternative to reading a file for that, as discussed in chapter Blob: URL.createObjectURL(file).
+
+The events that can trigger during the process of reading are the following:
+
+### loadstart
+progress
+load-This event is triggered when the file is successfully loaded.
+abort- This event is triggered if the reading operation is aborted.
+error-This event is triggered if an error occurs while reading the file.
+loadend
+
+##### When the reading is finished, we can access the result as:
+
+reader.result is the result (if successful)
+reader.error is the error (if failed).
+The most widely used events are for sure load and error.
+
+#### An example of reading a file will look as follows:
+
+ <!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title>Title of the Document</title>
+  </head>
+  <body>
+    <input onchange="readFile(this)" type="file">
+    <script>
+      function readFile(input) {
+        let file = input.files[0]; 
+        let reader = new FileReader(); 
+        reader.readAsText(file); 
+        reader.onload = function() {
+         console.log(fileReader.result);
+        }; 
+        reader.onload = function() {
+          console.log(fileReader.error);
+        }; 
+      }
+    </script>
+  </body>
+</html>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#### Here’s an example of reading a file
+
+Here’s an example of reading a file:
+
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title>Title of the Document</title>
+  </head>
+  <body>
+    <input onchange="readFile(this)" type="file">
+    <script>
+      function readFile(input) {
+        let file = input.files[0]; 
+        let reader = new FileReader(); 
+        reader.readAsText(file); 
+        reader.onload = function() {
+         console.log(fileReader.result);
+        }; 
+        reader.onload = function() {
+          console.log(fileReader.error);
+        }; 
+      }
+    </script>
+  </body>
+</html>
+
+## FileReader for blobs:
+
+FileReadercan read not just files, but any blobs.
+
+we can also use it convert blobs to another format.
+
+Use the readAsArrayBuffer, readAsDataURL, or readAsText method of the FileReader object to read the Blob's data and convert it to a different format.
+
+FileReaderSync is available inside Web Workers:
+
+there is also a syncrocronous variant of fileReader called fileRaedersync and its reading methods read* do not generate events, but rather return a result, as regular functions do.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+## FETCH
+
+The fetch API is used for making network requests, typically HTTP requests, to retrieve data from a server or API.
+we can: 
+Submit an order,
+Load user information,
+Receive latest updates from the server. We can achoeve all this with the use of AJAX term( Asynchronous JavaScript and Xml).
+
+one of the methods that we can use to send a network request and get information from the server and the modern one is fetch() method.
+
+The basic syntax is:
+
+let promise = fetch(url, [options])
+
+url – the URL to access.
+
+options – optional parameters: method, headers etc.
+
+the promise resolves with an object of the built-in Response class as soon as the server responds with headers.
+The we check if the HTTP was successful or not. The promise reject if the fetch was unable to make HTTP request.
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+## POST REQUEST
+you can make POST requests to send data to a server using the fetch API .
+
+// Define the URL and data to send
+const url = 'https://example.com/api';
+const data = {
+  key1: 'value1',
+  key2: 'value2'
+};
+
+// Create the request object
+const requestOptions = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json' // Set the content type to JSON
+  },
+  body: JSON.stringify(data) // Convert data to JSON string
+};
+
+// Make the POST request
+fetch(url, requestOptions)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json(); // Parse the response as JSON
+  })
+  .then(data => {
+    console.log(data); // Handle the response data
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  ## SENDING IMAGE IN JS
+  response.status – HTTP code of the response,
+
+response.ok – true is the status is 200-299.
+
+response.headers – Map-like object with HTTP headers.
+
+Methods to get response body:
+
+response.json() – parse the response as JSON object,
+
+response.text() – return the response as text,
+
+response.formData() – return the response as FormData object (form/multipart encoding, see the next chapter),
+
+response.blob() – return the response as Blob(binary data with type),
+
+response.arrayBuffer() – return the response as ArrayBuffer (pure binary data),
+
+Fetch options so far:
+
+method – HTTP-method,
+
+headers – an object with request headers (not any header is allowed),
+
+body – string, FormData, BufferSource, Blob or UrlSearchParams object to send.
+..............................................................................................................
+
+## FECTHING USER FROM GITHUB
+
+async function getUsers(names) {
+  try {
+    const githubUsers = [];
+
+    // Loop through each username and fetch user data
+    for (const name of names) {
+      const response = await fetch(`https://api.github.com/users/${name}`);
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch GitHub user for ${name}`);
+      }
+      
+      const user = await response.json();
+      githubUsers.push(user);
+    }
+
+    return githubUsers;
+  } catch (error) {
+    console.error('Error:', error);
+    return []; // Return an empty array in case of an error
+  }
+}
+
+// Example usage:
+const usernames = ['user1', 'user2', 'user3']; // Replace with the GitHub usernames you want to fetch
+getUsers(usernames)
+  .then(users => {
+    console.log('GitHub Users:', users);
+  })
+  .catch(err => {
+    console.error('Error:', err);
+  });
+
+
+This code defines an async function called getUsers that takes an array of GitHub usernames (names) as an argument.
+
+Inside the function, it initializes an empty array called githubUsers to store the fetched user data.
+
+It uses a for...of loop to iterate through each username in the input array.
+
+Within the loop, it makes a fetch request to the GitHub API to retrieve the user data for each username.
+
+If the fetch request is successful (response.ok), it parses the JSON response and pushes the user object into the githubUsers array.
+
+If there's any error during the fetch or parsing, it catches the error and logs it to the console, returning an empty array.
+
+Finally, it returns the githubUsers array containing the GitHub user data.
+
+You can call this getUsers function with an array of GitHub usernames, and it will return an array of GitHub users' data based on the input usernames.
 
  
 
