@@ -966,6 +966,87 @@ Finally, it returns the githubUsers array containing the GitHub user data.
 
 You can call this getUsers function with an array of GitHub usernames, and it will return an array of GitHub users' data based on the input usernames.
 
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# Day 2
  
+
+## SENDING A SIMPLE FORM
+
+Create an HTML Form:
+First, create an HTML form in your HTML file.
+
+Add Event Listener:
+Next, add an event listener to the form to handle the submission. You can use the addEventListener method to do this.
+
+Define a Function to Send Data:
+Create a JavaScript function (sendDataToServer in this example) that will handle the form data. You can send the data to a server using an HTTP request, or you can process it locally in JavaScript.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+## FORMDATA METHODS
+
+in javaScript, the FormData object provides methods and properties for working with HTML forms and their data. It's particularly useful for handling form data in a way that makes it easy to send to a server via AJAX or fetch requests.
+
+here is the list of commonly used method:
+1) Constructor: You can create a FormData object by passing a form element or a DOM document as an argument to the constructor. 
+
+const form = document.querySelector('form');
+const formData = new FormData(form);
+
+2) append(name, value): This method adds a new field with a specified name and value to the FormData object. If a field with the same name already exists, it appends a new value to it.
+formData.append('username', 'john_doe');
+
+3) delete(name): This method deletes a field with the specified name from the FormData object.
+
+formData.delete('username');
+
+
+4)get(name): This method retrieves the first value associated with a specified name from the FormData object.
+const username = formData.get('username');
+
+5) has(name): This method checks if a field with the specified name exists in the FormData object and returns a boolean value.
+const hasUsername = formData.has('username');
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+## SENDING A FORM WITH A FILE
+
+This is how we can send a form with a file:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <form id="formEl">
+      <input type="text" name="firstName" value="BORAH">
+      picture: <input type="file" name="Picture" 
+ accept="image/*">
+      <input type="submit">
+
+      <script>
+         formEle.onsubmit = async(e) => {
+         e.preventDefault();
+
+         let response = await 
+           fetch('/article/formdata/post/user-avater',{
+            method: 'POST',
+            body: new Formdata(formEle)
+         });
+
+         let result = await response.json();
+
+         alert(result.message);
+         };
+      </script>
+   </form>
+   
+</body>
+</html>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 
