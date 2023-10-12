@@ -93,7 +93,7 @@ status (yes/no) – shows or hides the status bar. Again, most browsers force it
 resizable (yes/no) – allows to disable the resize for the new window. Not recommended.
 scrollbars (yes/no) – allows to disable the scrollbars for the new window. Not recommended.
 There is also a number of less supported browser-specific features, which are usually not used. Check window.open in MDN for examples.
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ## Accessing popup from window:
 
@@ -122,7 +122,7 @@ newWindow.document.body.insertAdjacentHTML('afterbegin', html);
 </script>
 
 immediately after window.open, the new window isn’t loaded yet. That’s demonstrated by alert in line (*). So we wait for onload to modify it. We could also use DOMContentLoaded handler for newWin.document.
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ### ACCESSING A WINDOW FROM A POPUP
 
@@ -380,9 +380,10 @@ for (var i = 0; i < window.frames.length; i++) {
  You can modify the content, properties, and attributes of iframes through the window.frames collection. For example, you can change the source (URL) of an iframe:
 
 window.frames[0].src = 'newpage.html'; // Changes the source of the first iframe
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<The “sandbox” iframe attribute>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+## The “sandbox” iframe attribute
+
 The "sandbox" attribute can have several values or a combination of values separated by spaces, each of which represents a specific set of restrictions on the iframe's content. 
 The following are some common values:
 
@@ -403,9 +404,9 @@ allow-pointer-lock: If set, the iframe can use the Pointer Lock API to gain cont
 allow-orientation-lock: If set, the iframe can use the Orientation Lock API to control the screen orientation.
 
 allow-presentation: This allows the iframe to start a presentation session.
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-###Window Messaging
+### Window Messaging
 
 PostMessage allows windows from different origins to communicate by ignoring some of the restrictions.
 
@@ -476,10 +477,10 @@ To do this, you typically work on the server side to set the header in the HTTP 
 
 The header may have 3 values:
 
-#####DENY
+##### DENY
 Never ever show the page inside a frame.
 
-#####SAMEORIGIN
+##### SAMEORIGIN
 Allow inside a frame if the parent document comes from the same origin.
 
 #####ALLOW-FROM domain
@@ -599,7 +600,7 @@ These methods allow us to copy typed arrays, mix them, create new arrays from ex
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-##TypedArray methods
+## TypedArray methods
 
 TypedArrays in JavaScript come with various methods for manipulating and working with binary data efficiently. Here are short notes on some of the commonly used methods for TypedArrays:
 
@@ -651,7 +652,7 @@ indexOf(searchElement[, fromIndex]):
 Searches for the first occurrence of searchElement in the TypedArray, starting from the optional fromIndex.
 Returns the index of the found element or -1 if not found.
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ## DataView
 DataView is a JavaScript object that provides a way to access and manipulate binary data in a more flexible and fine-grained manner compared to TypedArrays.
