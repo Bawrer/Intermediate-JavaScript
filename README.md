@@ -66,7 +66,7 @@ The difference is that Firefox treats a timeout of 2000ms or less are acceptable
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<<<<<<<<<<<<<<------------- ## Window.open method-------------->>>>>>>>>>>>>>>>>>
+## Window.open method
 
 
 he window.open() function is a JavaScript method used to open a new browser window or tab (often referred to as a "popup" window) with a specified URL and various optional parameters.
