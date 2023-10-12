@@ -685,8 +685,9 @@ dataView.setInt32(0, 12345, true); // Write a 32-bit integer with little-endian 
 const readValue = dataView.getInt32(0, true); // Read the integer back
 
 console.log(readValue); // Output: 12345
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- 
+ ## week 2
 
  
 
