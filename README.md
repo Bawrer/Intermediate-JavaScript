@@ -150,7 +150,7 @@ immediately after window.open, the new window isn’t loaded yet. That’s demon
 </html>
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-###CLOSING A POPUP
+### CLOSING A POPUP
 
 First, make sure you have a reference to the popup window object in your parent window. You can store this reference when you open the popup window using the window.open() method.
 
