@@ -1,6 +1,6 @@
 # week1-notes
 
-Week 1 day 1 notes Intermediate JS 
+## Week 1 day 1 notes Intermediate JS 
  The oldest methods to indicate an additional documents was popup window. 
 syntax: window.open('https://javascript.info/')
 
