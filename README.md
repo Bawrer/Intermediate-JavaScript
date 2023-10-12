@@ -476,13 +476,13 @@ To do this, you typically work on the server side to set the header in the HTTP 
 
 The header may have 3 values:
 
-DENY
+#####DENY
 Never ever show the page inside a frame.
 
-SAMEORIGIN
+#####SAMEORIGIN
 Allow inside a frame if the parent document comes from the same origin.
 
-ALLOW-FROM domain
+#####ALLOW-FROM domain
 Allow inside a frame if the parent document is from the given domain.
 
 For instance, Twitter uses X-Frame-Options: SAMEORIGIN.
@@ -498,10 +498,196 @@ The X-Frame-Options header has a side-effect. Other sites won’t be able to sho
 
 So there are other solutions… For instance, we can “cover” the page with a <div> with styles height: 100%; width: 100%;, so that it will intercept all clicks.
 That <div> is to be removed if window == top or if we figure out that we don’t need the protection.
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ## SAMESITE COOKIES ATTRIBUTE
 Another method to prevent clickjacking is samesite cookies attribute.
 A cookie with such attribute is only sent to a website if it’s opened directly, not via a frame, or otherwise.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# day 4
+
+## ArrayBuffer
+TypedArray is the combination of uit8Array, uint16array, uint32array etc. 
+They have indexes and iterable.
+
+A typed array constructor (be it Int8Array or Float64Array, doesn’t matter) behaves differently depending on argument types.
+
+#### There are 5 variants of arguments:
+
+new TypedArray(buffer, [byteOffset], [length]);
+
+new TypedArray(object);
+
+new TypedArray(typedArray);
+
+new TypedArray(length);
+
+new TypedArray();
+
+
+Data Types: TypedArrays provide a way to work with binary data using a fixed type. 
+The available data types include Int8Array, Uint8Array, Int16Array, Uint16Array, Int32Array, Uint32Array, Float32Array, and Float64Array.
+
+Fixed Length: Each TypedArray has a fixed length, meaning you cannot change the number of elements after creation. To change the length, you must create a new TypedArray.
+
+Memory Efficiency: TypedArrays are memory-efficient because they store data in a contiguous memory block and have a fixed type. 
+This is especially useful when dealing with large datasets or interfacing with lower-level APIs.
+
+Creation: You can create a TypedArray from various sources, including existing arrays, ArrayBuffer, or shared memory using constructors like Uint8Array, Int32Array, etc.
+
+const array = new Uint8Array([1, 2, 3]);
+
+
+ArrayBuffer: TypedArrays are often used in conjunction with ArrayBuffer, which is a low-level binary data buffer. ArrayBuffer can be shared among different TypedArrays.
+
+ eg, const buffer = new ArrayBuffer(16);
+const view1 = new Int8Array(buffer);
+const view2 = new Uint32Array(buffer);
+
+Indexed Access: You can access elements in a TypedArray using the standard array indexing notation.
+
+const value = array[0];
+
+data Manipulation: TypedArrays provide methods to manipulate data, such as set, subarray, and more, to copy, slice, or modify portions of the data efficiently.
+
+eg, const newArray = array.subarray(1, 3);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+### Out-bound-behaviour
+ In JavaScript, out-of-bounds behavior refers to attempting to access or modify elements in an array or other data structures at an index that is outside the valid range of indices.
+
+for example:
+
+const arr = [1, 2, 3];
+console.log(arr[10]); // Outputs: undefined
+
+Array Length: The length property of an array indicates the number of elements in the array. If you access an index greater than or equal to the length, you're accessing an out-of-bounds index.
+example:
+
+const arr = [1, 2, 3];
+console.log(arr.length); // Outputs: 3
+console.log(arr[3]); // Outputs: undefined (out of bounds)
+
+Bounds Checking:
+JavaScript does not perform bounds checking by default. It's up to the developer to ensure that they don't access out-of-bounds indices.
+
+example: const arr = [1, 2, 3];
+const index = 10;
+
+if (index >= 0 && index < arr.length) {
+  console.log(arr[index]);
+} else {
+  console.log("Index is out of bounds");
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+## TypedDataArray
+TypedArray has regular Array methods, with notable exceptions.
+
+We can iterate, map, slice, find, reduce, etc.
+
+There are a few things we can’t do though:
+
+No splice – we can’t “delete” a value, because typed arrays are views on a buffer, and these are fixed, contiguous areas of memory. All we can do is to assign a zero.
+No concat method.
+There are two additional methods:
+
+arr.set(fromArr, [offset]) copies all elements from fromArr to the arr, starting at position offset (0 by default).
+arr.subarray([begin, end]) creates a new view of the same type from begin to end (exclusive). That’s similar to slice method (that’s also supported), but doesn’t copy anything – just creates a new view, to operate on the given piece of data.
+These methods allow us to copy typed arrays, mix them, create new arrays from existing ones, and so on.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+##TypedArray methods
+
+TypedArrays in JavaScript come with various methods for manipulating and working with binary data efficiently. Here are short notes on some of the commonly used methods for TypedArrays:
+
+
+subarray(begin[, end]):
+
+Returns a new TypedArray that references a portion of the original TypedArray, specified by the begin and optional end indices.
+Useful for creating views into the same underlying data.
+
+
+slice(begin[, end]):
+
+Similar to subarray but returns a new TypedArray with the specified portion of the original TypedArray.
+Creates a copy of the data if the TypedArray is not backed by an ArrayBuffer.
+
+
+set(array[, offset]):
+
+Copies the values from a regular array or TypedArray array into the current TypedArray, starting at the optional offset position.
+Useful for combining or copying data between TypedArrays.
+
+
+copyWithin(target, start[, end]):
+
+Copies a portion of the TypedArray and pastes it within the same TypedArray, starting at the target index and replacing elements from start to end.
+Modifies the original TypedArray in place.
+
+
+sort([compareFunction]):
+
+Sorts the elements in the TypedArray, optionally using a custom comparison function specified by compareFunction.
+Modifies the original TypedArray.
+
+
+map(callback[, thisArg]):
+
+Creates a new TypedArray by applying the provided callback function to each element in the original TypedArray.
+The thisArg parameter allows setting the context for the callback.
+
+
+reduce(callback[, initialValue]):
+
+Applies a callback function to the elements of the TypedArray, accumulating a single result.
+The initialValue is an optional starting value for the accumulation.
+
+
+indexOf(searchElement[, fromIndex]):
+
+Searches for the first occurrence of searchElement in the TypedArray, starting from the optional fromIndex.
+Returns the index of the found element or -1 if not found.
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+## DataView
+DataView is a JavaScript object that provides a way to access and manipulate binary data in a more flexible and fine-grained manner compared to TypedArrays.
+
+syntax:
+const buffer = new ArrayBuffer(bufferLength); // Create an ArrayBuffer with a specified length in bytes.
+const dataView = new DataView(buffer); // Create a DataView to work with the ArrayBuffer.
+
+reading data:
+// Reading methods: get<Type>(byteOffset, [littleEndian])
+
+const intValue = dataView.getInt32(byteOffset, littleEndian);
+const floatValue = dataView.getFloat32(byteOffset, littleEndian);
+const stringValue = dataView.getString(byteOffset, byteLength, encoding);
+// ...and more, where <Type> can be Int8, Uint8, Int16, Uint16, Int32, Uint32, Float32, or Float64.
+
+writing data:
+// Writing methods: set<Type>(byteOffset, value, [littleEndian])
+
+dataView.setInt32(byteOffset, intValue, littleEndian);
+dataView.setFloat32(byteOffset, floatValue, littleEndian);
+dataView.setString(byteOffset, stringValue, encoding);
+// ...and more, where <Type> can be Int8, Uint8, Int16, Uint16, Int32, Uint32, Float32, or Float64.
+
+combination of the above syntax:
+
+const buffer = new ArrayBuffer(4); // Create a 4-byte buffer
+const dataView = new DataView(buffer); // Create a DataView to work with the buffer
+
+dataView.setInt32(0, 12345, true); // Write a 32-bit integer with little-endian byte order
+const readValue = dataView.getInt32(0, true); // Read the integer back
+
+console.log(readValue); // Output: 12345
+
+ 
+
+ 
 
 
