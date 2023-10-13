@@ -271,7 +271,7 @@ There’s also window.onscroll event.
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-###Focus/Blur on a window
+### Focus/Blur on a window
 
 To blur a specific HTML element:
 
@@ -322,7 +322,7 @@ var iframeDocument = iframe.contentDocument;
 var iframeBody = iframeDocument.body;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-###Windows on subdomains: document.domain
+### Windows on subdomains: document.domain
 
 
 Generally, two URLs with different domains have different origins, if the windows share the same second-level domain , e.g  borah.site.come, tsepo.site.com and site.com. their second-level domain is site.com.
