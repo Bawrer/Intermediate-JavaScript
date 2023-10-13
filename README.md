@@ -720,7 +720,7 @@ Let’s see how the File object can be received from <input type="file">:
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-                              ## fileReader
+## fileReader
 
 The purpose of the fileReader is to read data from Blob objects. It provides data with the usage of events because reading from disk might take long.
 
