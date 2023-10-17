@@ -1789,6 +1789,7 @@ This will create the initial project structure with necessary files and dependen
 In a typical React Native project, the entry point for your app is often an App.js or index.js file. This is where you define your main component. The component is created using React and React Native components. Here's a basic example:
 
 import React from 'react';
+
 import { View, Text } from 'react-native';
 
 const App = () => {
