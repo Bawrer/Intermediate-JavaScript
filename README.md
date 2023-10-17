@@ -1776,7 +1776,7 @@ Key features and concepts of React Native include:
 
 It's worth noting that while React Native offers many advantages, there may be cases where building a fully native app (using Swift for iOS or Kotlin/Java for Android) is necessary, particularly for apps that require very specific platform capabilities. However, React Native has proven to be a powerful and flexible tool for a wide range of mobile app development projects.
 
- # Building index pages
+ # day 2 Building index pages
 
  steps to build the index page in a React Native application:
 
