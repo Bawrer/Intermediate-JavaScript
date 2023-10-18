@@ -1828,4 +1828,3 @@ After running your app, you can see how your index page looks on a mobile device
 ## Extend Your App:
 
 React Native provides extensive capabilities for building mobile apps. You can expand your app by adding features such as navigation, additional screens, data fetching from APIs, and styling using CSS or libraries like Styled Components. Explore the React Native documentation and community resources to learn more about building mobile apps with React Native.
-
