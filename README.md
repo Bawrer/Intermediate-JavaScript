@@ -1778,7 +1778,7 @@ It's worth noting that while React Native offers many advantages, there may be c
 
  # day 2 Building index pages
 
- # #Create a New React Native Project:
+ ## Create a New React Native Project:
 
 Start by setting up a new React Native project using the command line. You can use the npx react-native init command followed by your desired project name. For example:npx react-native init MyAwesomeApp
 
@@ -1828,3 +1828,66 @@ After running your app, you can see how your index page looks on a mobile device
 ## Extend Your App:
 
 React Native provides extensive capabilities for building mobile apps. You can expand your app by adding features such as navigation, additional screens, data fetching from APIs, and styling using CSS or libraries like Styled Components. Explore the React Native documentation and community resources to learn more about building mobile apps with React Native.
+
+## creating pusher App
+Pusher is a service that enables real-time communication in your application, which can be useful for building chat apps, live notifications, and more.
+### Step 1: Set up a React Native Project
+Create a new React Native project if you don't have one already. You can use the following command:
+npx react-native init PusherApp
+
+### Step 2: Install Dependencies
+To work with Pusher in your React Native app, you'll need to install the pusher-js library. You can also use the react-native-pusher package for easier integration. Let's install both of these packages:
+npm install pusher-js react-native-pusher --save
+### Step 3: Set up Pusher Account
+You need to sign up for a Pusher account and create an app. After creating the app, you will get the necessary credentials, including the App ID, Key, and Secret.
+
+Step 4: Configure Pusher
+Open your React Native project and configure Pusher with your credentials. Create a file, e.g., pusher.js, and add the following code:
+import Pusher from 'pusher-js/react-native';
+
+const pusher = new Pusher({
+  appId: 'YOUR_APP_ID',
+  key: 'YOUR_APP_KEY',
+  secret: 'YOUR_APP_SECRET',
+  cluster: 'YOUR_APP_CLUSTER',
+  useTLS: true,
+});
+
+export default pusher;
+
+Replace 'YOUR_APP_ID', 'YOUR_APP_KEY', 'YOUR_APP_SECRET', and 'YOUR_APP_CLUSTER' with your Pusher app credentials.
+## Step 5: Using Pusher in Your React Native App
+Now you can use Pusher to enable real-time communication in your React Native app. For example, you can implement a chat system, live notifications, or anything that requires real-time updates.
+
+Here's a basic example of subscribing to a channel and listening for events:
+
+import React, { useEffect } from 'react';
+import { View, Text } from 'react-native';
+import pusher from './pusher'; // Import your Pusher configuration
+
+const App = () => {
+  useEffect(() => {
+    const channel = pusher.subscribe('my-channel');
+    
+    channel.bind('my-event', data => {
+      console.log('Received data: ', data);
+      // Do something with the received data (e.g., update your UI)
+    });
+    
+    return () => {
+      // Unsubscribe from the channel when the component unmounts
+      pusher.unsubscribe('my-channel');
+    };
+  }, []);
+
+  return (
+    <View>
+      <Text>Pusher App in React Native</Text>
+    </View>
+  );
+};
+
+export default App;
+
+
+This is a basic setup for integrating Pusher into your React Native app. You can extend this to build real-time features such as chat, notifications, or anything that requires real-time updates in your app. Don't forget to secure your Pusher credentials and follow best practices for handling sensitive information.
