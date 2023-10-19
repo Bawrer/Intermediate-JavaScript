@@ -1829,7 +1829,7 @@ After running your app, you can see how your index page looks on a mobile device
 
 React Native provides extensive capabilities for building mobile apps. You can expand your app by adding features such as navigation, additional screens, data fetching from APIs, and styling using CSS or libraries like Styled Components. Explore the React Native documentation and community resources to learn more about building mobile apps with React Native.
 
-## creating pusher App
+# creating pusher App
 Pusher is a service that enables real-time communication in your application, which can be useful for building chat apps, live notifications, and more.
 ### Step 1: Set up a React Native Project
 Create a new React Native project if you don't have one already. You can use the following command:
