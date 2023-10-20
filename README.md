@@ -1892,7 +1892,8 @@ export default App;
 
 This is a basic setup for integrating Pusher into your React Native app. You can extend this to build real-time features such as chat, notifications, or anything that requires real-time updates in your app. Don't forget to secure your Pusher credentials and follow best practices for handling sensitive information.
 
-# day 4
+# day 3
+
 
 Building a chat component for your website involves several important aspects to consider. Here's a list of things you should be aware of when building a chat component using JavaScript:
 
